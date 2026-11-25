@@ -1,255 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AGUGCAI Initiative</title>
-
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ExamMate | School Examination System</title>
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #020617;
-        color: white;
-    }
-
-    header {
-        background: #020617;
-        padding: 20px;
-        text-align: center;
-        border-bottom: 2px solid #00ffcc;
-    }
-
-    header h1 {
-        color: #00ffcc;
-        margin: 0;
-    }
-
-    nav {
-        display: flex;
-        justify-content: center;
-        background: #020617;
-        padding: 10px;
-        flex-wrap: wrap;
-    }
-
-    nav a {
-        color: white;
-        margin: 10px 15px;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    nav a:hover {
-        color: #00ffcc;
-    }
-
-    .hero {
-        text-align: center;
-        padding: 60px 20px;
-        background: linear-gradient(to right, #020617, #0f172a);
-    }
-
-    .hero h2 {
-        font-size: 32px;
-    }
-
-    .btn {
-        padding: 12px 25px;
-        background: #00ffcc;
-        border: none;
-        cursor: pointer;
-        font-weight: bold;
-        border-radius: 5px;
-    }
-
-    .section {
-        padding: 40px 20px;
-        text-align: center;
-    }
-
-    .cards {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .card {
-        background: #111827;
-        margin: 15px;
-        padding: 20px;
-        width: 300px;
-        border-radius: 10px;
-    }
-
-    footer {
-        background: black;
-        text-align: center;
-        padding: 15px;
-        margin-top: 20px;
-    }
-
-    input {
-        padding: 10px;
-        width: 80%;
-        margin: 10px;
-        border-radius: 5px;
-        border: none;
-    }
-</style>
-
-</head>
-
+:root{--navy:#14213d;--blue:#2563eb;--pale:#eff6ff;--ink:#172033;--muted:#64748b;--line:#e2e8f0;--bg:#f5f7fb;--green:#15803d}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--navy);color:white;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-size:22px;font-weight:800;letter-spacing:.2px}.brand span{color:#93c5fd}header small{color:#cbd5e1}
+.layout{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 66px)}
+nav{background:white;border-right:1px solid var(--line);padding:18px 12px}
+nav button{display:block;width:100%;text-align:left;border:0;background:white;padding:13px;border-radius:9px;margin:3px 0;color:#334155;font-weight:600;cursor:pointer}
+nav button.active,nav button:hover{background:var(--pale);color:var(--blue)}
+main{padding:26px;max-width:1300px;width:100%;margin:auto}.page{display:none}.page.active{display:block}
+h1{font-size:27px;margin:0 0 8px}h2{font-size:19px;margin:0 0 14px}.sub{color:var(--muted);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:18px 0}
+.card{background:white;border:1px solid var(--line);border-radius:14px;padding:19px;box-shadow:0 2px 8px #0f172a08}
+.stat{font-size:29px;font-weight:800;margin-top:8px}.muted{color:var(--muted);font-size:13px}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.row>*{flex:1}
+.btn{border:0;border-radius:9px;padding:11px 16px;background:var(--blue);color:white;font-weight:700;cursor:pointer}.btn.secondary{background:#eaf0f9;color:#1e3a8a}.btn.dark{background:var(--navy)}.btn:disabled{opacity:.5;cursor:not-allowed}
+input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;font:inherit;background:white}label{display:block;font-size:13px;font-weight:700;margin:12px 0 6px}
+.drop{border:2px dashed #93a9c8;background:#f8fbff;border-radius:13px;padding:28px;text-align:center;margin:14px 0}
+.notice{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:12px;border-radius:9px;font-size:13px;line-height:1.5}
+.result{white-space:pre-wrap;line-height:1.55;background:#f8fafc;border:1px solid var(--line);padding:15px;border-radius:10px;margin-top:14px}
+.q{border:1px solid var(--line);padding:15px;border-radius:10px;margin:12px 0;background:#fff}.q p{font-weight:700;margin-top:0}.q label{font-weight:400;margin:8px 0;display:flex;gap:8px;align-items:flex-start}.q input{width:auto;margin-top:3px}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;border-bottom:1px solid var(--line);padding:11px;font-size:14px}
+footer{padding:20px;color:var(--muted);font-size:12px;text-align:center}
+@media(max-width:760px){.layout{grid-template-columns:1fr}nav{display:flex;overflow:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}nav button{white-space:nowrap;width:auto}.grid{grid-template-columns:1fr}main{padding:17px}header{padding:15px}}
+</style></head>
 <body>
-
-<header>
-    <h1>AGUGCAI</h1>
-    <p>Anti-Global Ungodly Content Abolishment Initiative</p>
-</header>
-
+<header><div><div class="brand">Exam<span>Mate</span></div><small>School Examination & Assessment Platform</small></div><div><small id="schoolLabel">School workspace · Demo mode</small></div></header>
+<div class="layout">
 <nav>
-    <a href="#home">Home</a>
-    <a href="#mission">Mission</a>
-    <a href="#sermons">Sermons</a>
-    <a href="#bible">Bible</a>
-    <a href="#leaders">Leaders</a>
-    <a href="#join">Join</a>
+<button class="active" data-page="dashboard">▦ Dashboard</button>
+<button data-page="upload">⇧ Upload & Mark</button>
+<button data-page="generate">✚ Generate Paper</button>
+<button data-page="practice">✓ Take Practice Exam</button>
+<button data-page="results">▤ Results & Reports</button>
+<button data-page="settings">⚙ Setup</button>
 </nav>
-
-<section class="hero" id="home">
-    <h2>Stand for Truth. Reject Corruption.</h2>
-    <p>Transforming lives through discipline, faith, and purpose.</p>
-    <button class="btn" onclick="scrollToJoin()">Join Us</button>
+<main>
+<section id="dashboard" class="page active">
+<h1>School dashboard</h1><p class="sub">Manage examination papers, practice tests and learner performance.</p>
+<div class="grid">
+<div class="card"><div class="muted">Papers processed</div><div class="stat" id="papersCount">0</div><div class="muted">This browser session</div></div>
+<div class="card"><div class="muted">Practice attempts</div><div class="stat" id="attemptCount">0</div><div class="muted">Completed attempts</div></div>
+<div class="card"><div class="muted">Latest score</div><div class="stat" id="latestScore">—</div><div class="muted">Most recent practice</div></div>
+</div>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
+<div class="card"><h2>Upload a paper</h2><p class="muted">Read a PDF, Word document or image, then create suggested answers and a marking guide.</p><button class="btn" onclick="showPage('upload')">Open upload tool</button></div>
+<div class="card"><h2>Generate an exam</h2><p class="muted">Create objective practice questions by subject, level, topic and number.</p><button class="btn" onclick="showPage('generate')">Create examination</button></div>
+<div class="card"><h2>Mark a practice test</h2><p class="muted">Answer multiple-choice questions and receive an instant score and corrections.</p><button class="btn" onclick="showPage('practice')">Start practice</button></div>
+</div>
+<div class="notice">Important: This is the ExamMate starter system. Local objective marking works immediately. AI paper reading, answer generation and written-answer assessment require the secure backend and an AI API key. Always have a teacher verify AI-generated answers and marks.</div>
 </section>
-
-<section class="section" id="mission">
-    <h2>Our Mission</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>Purity</h3>
-            <p>Eliminating ungodly digital content.</p>
-        </div>
-        <div class="card">
-            <h3>Discipline</h3>
-            <p>Building strong and focused individuals.</p>
-        </div>
-        <div class="card">
-            <h3>Faith</h3>
-            <p>Encouraging spiritual growth and truth.</p>
-        </div>
-    </div>
+<section id="upload" class="page">
+<h1>Upload & mark a paper</h1><p class="sub">Upload an examination or learner's answer script. Supported: PDF, DOCX, TXT and common image formats.</p>
+<div class="card">
+<label>Choose a document</label><input type="file" id="paperFile" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp">
+<div class="drop" id="dropzone">Drop your file here or choose a file above</div>
+<label>What should ExamMate do?</label><select id="task"><option value="solve">Generate suggested answers and explanations</option><option value="mark">Mark a learner's submitted answers against a marking guide</option><option value="guide">Create a marking guide / scheme</option><option value="extract">Extract and organise the questions</option></select>
+<label>Extra instructions (optional)</label><textarea id="uploadNotes" rows="3" placeholder="Example: Senior Four Biology, Uganda curriculum. Show marks for each question."></textarea>
+<div style="margin-top:14px" class="row"><button class="btn" id="analyseBtn" onclick="analysePaper()">Analyse uploaded paper</button><button class="btn secondary" onclick="clearUpload()">Clear</button></div>
+<div id="uploadStatus" class="muted" style="margin-top:12px"></div><div id="uploadResult"></div>
+</div>
 </section>
-
-<section class="section" id="sermons">
-    <h2>Featured Sermon</h2>
-    <div class="card">
-        <p>"The Power of Discipline in a Corrupt World"</p>
-        <a href="https://www.youtube.com/results?search_query=discipline+sermon+christian" target="_blank">
-            <button class="btn">Watch Sermon</button>
-        </a>
-    </div>
+<section id="generate" class="page">
+<h1>Generate an examination</h1><p class="sub">Create a fresh practice paper for your learners.</p>
+<div class="card">
+<div class="row"><div><label>Subject</label><select id="subject"><option>Biology</option><option>Nursing</option><option>Chemistry</option><option>Physics</option><option>Mathematics</option><option>English</option><option>Biomedical Engineering</option></select></div><div><label>Class / level</label><select id="level"><option>Senior 4 (UCE)</option><option>Senior 6 (UACE)</option><option>Certificate</option><option>Diploma</option><option>University</option><option>Nursing students</option></select></div></div>
+<div class="row"><div><label>Topic</label><input id="topic" placeholder="e.g. Human respiration"></div><div><label>Difficulty</label><select id="difficulty"><option>Mixed</option><option>Easy</option><option>Moderate</option><option>Advanced</option></select></div><div><label>Number of questions</label><select id="number"><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select></div></div>
+<label>Question format</label><select id="format"><option>Multiple-choice questions (A-D)</option><option>True or False</option><option>Mixed objective questions</option></select>
+<button class="btn" style="margin-top:16px" onclick="generatePaper()">Generate paper with AI</button><div id="genStatus" class="muted" style="margin-top:12px"></div><div id="genResult"></div>
+</div>
 </section>
-
-<section class="section" id="bible">
-    <h2>Read the Bible</h2>
-    <div class="card">
-        <p>Access the full King James Version Bible online.</p>
-        <button class="btn" onclick="openBible()">Open Bible</button>
-    </div>
+<section id="practice" class="page">
+<h1>Practice examination</h1><p class="sub">A sample objective test is available immediately. Generated papers can also be practised here when connected to the backend.</p>
+<div class="card"><div class="row"><div><label>Sample subject</label><select id="sampleSubject"><option>Biology</option><option>Human Anatomy</option><option>Nursing</option></select></div><button class="btn" onclick="loadSample()">Load sample questions</button></div><div id="quizArea"></div><div id="quizFeedback"></div></div>
 </section>
-
-<section class="section" id="leaders">
-    <h2>Our Leaders</h2>
-
-    <div class="cards">
-        <div class="card">
-            <h3>Apostle Ivan Obella</h3>
-            <p>General Manager & Co-Founder</p>
-        </div>
-
-        <div class="card">
-            <h3>Pastor Odell Frederick</h3>
-            <p>President & Executive Director & Co-Founder</p>
-        </div>
-
-        <div class="card">
-            <h3>Echaka Gaptus</h3>
-            <p>Information Analyst</p>
-        </div>
-
-        <div class="card">
-            <h3>Pastor Oulema Stephen</h3>
-            <p>Event Organizer</p>
-        </div>
-
-        <div class="card">
-            <h3>Brother Pros Joel</h3>
-            <p>Regional General Coordinator</p>
-        </div>
-    </div>
+<section id="results" class="page">
+<h1>Results & reports</h1><p class="sub">Results from practice attempts in this browser.</p><div class="card"><table><thead><tr><th>Assessment</th><th>Score</th><th>Percentage</th><th>Date</th></tr></thead><tbody id="resultsBody"><tr><td colspan="4" class="muted">No results yet.</td></tr></tbody></table></div>
 </section>
-
-<!-- ✅ FIXED JOIN FORM -->
-<section class="section" id="join">
-    <h2>Join AGUGCAI</h2>
-    <div class="card">
-
-        <form id="signupForm">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <br>
-            <button type="submit" class="btn">Join Now</button>
-        </form>
-
-        <p id="message" style="color: lightgreen;"></p>
-
-    </div>
+<section id="settings" class="page">
+<h1>School setup</h1><p class="sub">Set the school identity for this workspace.</p><div class="card"><label>School / institution name</label><input id="schoolName" placeholder="Enter school name"><label>Administrator / teacher</label><input id="adminName" placeholder="Enter name"><button class="btn" style="margin-top:14px" onclick="saveSettings()">Save school details</button><p class="muted">For a live multi-school service, authentication, database hosting and school-specific access controls must be configured in the production deployment.</p></div>
+<div class="notice" style="margin-top:16px"><b>AI connection setup:</b> The AI key must be stored on the server as an environment variable named OPENAI_API_KEY. Never paste a private API key into this webpage or share it with students.</div>
 </section>
-
-<footer>
-    <p>Founder: Pastor Odell Frederick</p>
-    <p>© 2026 AGUGCAI</p>
-</footer>
-
+</main></div><footer>ExamMate · School Examination & Assessment Platform · AI-generated marking should be reviewed by a qualified teacher.</footer>
 <script>
-function openBible() {
-    window.open("https://www.kingjamesbibleonline.org/", "_blank");
-}
-
-function scrollToJoin() {
-    document.getElementById("join").scrollIntoView({behavior: "smooth"});
-}
-
-/* ✅ SAFE FORM SYSTEM */
-window.onload = function () {
-    const form = document.getElementById("signupForm");
-
-    if (form) {
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
-
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-
-            let users = JSON.parse(localStorage.getItem("users")) || [];
-
-            users.push({
-                name: name,
-                email: email,
-                status: "pending"
-            });
-
-            localStorage.setItem("users", JSON.stringify(users));
-
-            document.getElementById("message").innerText =
-                "Request submitted! Await approval.";
-
-            form.reset();
-        });
-    }
-};
-</script>
-
-</body>
-    </html>
-    
+const sample=[
+{q:"Which organelle is the main site of aerobic respiration in a human cell?",o:["Ribosome","Mitochondrion","Nucleus","Golgi apparatus"],a:1,e:"Mitochondria contain the machinery for aerobic respiration and ATP production."},
+{q:"Which blood vessel carries oxygenated blood from the lungs to the heart?",o:["Pulmonary artery","Aorta","Pulmonary vein","Vena cava"],a:2,e:"Pulmonary veins return oxygenated blood from the lungs to the left atrium."},
+{q:"The functional unit of the kidney is the:",o:["Neuron","Alveolus","Nephron","Villus"],a:2,e:"The nephron filters blood and forms urine."},
+{q:"Which hormone lowers blood glucose concentration?",o:["Adrenaline","Insulin","Glucagon","Thyroxine"],a:1,e:"Insulin promotes uptake and storage of glucose, lowering blood glucose."},
+{q:"Gas exchange in human lungs occurs mainly in the:",o:["Trachea","Bronchi","Alveoli","Larynx"],a:2,e:"Alveoli have thin walls and a large surface area for diffusion."},
+{q:"Which cells are primarily responsible for antibody production?",o:["Red blood cells","B lymphocytes / plasma cells","Platelets","Neutrophils"],a:1,e:"Activated B lymphocytes differentiate into plasma cells that secrete antibodies."},
+{q:"The hereditary material in most living organisms is:",o:["Starch","DNA","Lipid","Cellulose"],a:1,e:"DNA stores genetic information."},
+{q:"Which structure prevents food from entering the trachea during swallowing?",o:["Epiglottis","Diaphragm","Pleura","Uvula"],a:0,e:"The epiglottis helps cover the laryngeal opening during swallowing."},
+{q:"A lack of vitamin C causes:",o:["Rickets","Scurvy","Pellagra","Night blindness"],a:1,e:"Vitamin C deficiency causes scurvy."},
+{q:"Which part of a neuron receives most incoming signals?",o:["Axon terminal","Dendrites","Myelin sheath","Node of Ranvier"],a:1,e:"Dendrites receive signals from other neurons."}
+];
+let quiz=[],attempts=JSON.parse(localStorage.getItem("emAttempts")||"[]"),papers=0;
+function showPage(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id))}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+function updateStats(){document.getElementById("papersCount").textContent=papers;document.getElementById("attemptCount").textContent=attempts.length;document.getElementById("latestScore").textContent=attempts.length?attempts[attempts.length-1].score+"/"+attempts[attempts.length-1].total:"—";document.getElementById("resultsBody").innerHTML=attempts.length?attempts.slice().reverse().map(x=>`<tr><td>${x.name}</td><td>${x.score}/${x.total}</td><td>${Math.round(x.score/x.total*100)}%</td><td>${x.date}</td></tr>`).join(""):'<tr><td colspan="4" class="muted">No results yet.</td></tr>'}
+function loadSample(){quiz=sample;document.getElementById("quizFeedback").innerHTML="";document.getElementById("quizArea").innerHTML=quiz.map((q,i)=>`<div class="q"><p>${i+1}. ${q.q}</p>${q.o.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${"ABCD"[j]}. ${o}</label>`).join("")}<div class="muted" id="exp${i}"></div></div>`).join("")+'<button class="btn" onclick="markQuiz()">Submit answers and mark</button>'}
+function markQuiz(){let score=0;quiz.forEach((q,i)=>{let a=document.querySelector(`input[name=q${i}]:checked`);let chosen=a?Number(a.value):-1;if(chosen===q.a)score++;let el=document.getElementById("exp"+i);el.innerHTML=(chosen===q.a?'✓ Correct. ':'✗ Correct answer: '+ "ABCD"[q.a]+". "+q.o[q.a]+". ")+q.e;el.style.color=chosen===q.a?'#15803d':'#b91c1c'});let item={name:"Biology sample practice",score,total:quiz.length,date:new Date().toLocaleDateString()};attempts.push(item);localStorage.setItem("emAttempts",JSON.stringify(attempts));document.getElementById("quizFeedback").innerHTML=`<div class="result"><b>Your score: ${score}/${quiz.length} (${Math.round(score/quiz.length*100)}%)</b><br>${score===quiz.length?"Excellent work!":"Review the explanations and try again."}</div>`;updateStats()}
+function clearUpload(){document.getElementById("paperFile").value="";document.getElementById("uploadResult").innerHTML="";document.getElementById("uploadStatus").textContent=""}
+async function apiCall(path,body){let r=await fetch(path,{method:"POST",body});let d=await r.json();if(!r.ok)throw new Error(d.error||"Request failed");return d}
+async function analysePaper(){let f=document.getElementById("paperFile").files[0];if(!f){alert("Choose a question paper or answer script first.");return}let fd=new FormData();fd.append("file",f);fd.append("task",document.getElementById("task").value);fd.append("notes",document.getElementById("uploadNotes").value);let s=document.getElementById("uploadStatus"),b=document.getElementById("analyseBtn");s.textContent="Uploading and analysing…";b.disabled=true;try{let d=await apiCall("/api/analyse",fd);document.getElementById("uploadResult").innerHTML='<div class="result"></div>';document.querySelector("#uploadResult .result").textContent=d.result||JSON.stringify(d,null,2);papers++;updateStats();s.textContent="Analysis complete."}catch(e){s.textContent="Could not connect to the AI service: "+e.message+" If you opened this as a file, run the included server first."}finally{b.disabled=false}}
+async function generatePaper(){let fd=new FormData();["subject","level","topic","difficulty","number","format"].forEach(k=>fd.append(k,document.getElementById(k).value));let s=document.getElementById("genStatus");s.textContent="Generating examination…";try{let d=await apiCall("/api/generate",fd);document.getElementById("genResult").innerHTML='<div class="result"></div>';document.querySelector("#genResult .result").textContent=d.paper;s.textContent="Paper generated. Teacher should review it before use."}catch(e){s.textContent="AI generation unavailable: "+e.message+" Run the included server and configure the API key."}}
+function saveSettings(){let n=document.getElementById("schoolName").value.trim();if(!n){alert("Enter a school name");return}document.getElementById("schoolLabel").textContent=n+" · School workspace";localStorage.setItem("emSchool",n);alert("School name saved in this browser.")}
+let saved=localStorage.getItem("emSchool");if(saved)document.getElementById("schoolLabel").textContent=saved+" · School workspace";updateStats();loadSample();
+</script></body></html>
